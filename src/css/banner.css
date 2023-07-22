@@ -1,0 +1,66 @@
+.banner
+{
+    height: 200px;
+    cursor:default;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.banner:hover
+{
+    box-shadow: 0px 0px 10px #ccc;
+}
+.banner:active
+{
+    transform: translateY(1px);
+}
+.banner-text
+{
+    position:relative;
+    padding: 15px;
+}
+.banner .banner-heading
+{
+    font-size: 16px;
+    color: var(--primary-color);
+    font-weight: 600;
+    width: 200px;
+    max-height: 10px;
+    margin-bottom: 10px;
+}
+.banner p{
+    margin-top: 30px;
+    clear: both;
+}
+
+.banner-img
+{
+    height: 200px;
+    overflow: hidden;
+    /* border-radius: 5px; */
+
+}
+.banner-img img
+{
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+    /* user-drag: none;   */
+    user-select: none;
+}
+.img-preview
+{
+    height: 200px;
+    width: 100%;
+
+}
+.img-preview img 
+{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+/* modal  */
+.b-img 
+{
+    border: 1px solid #dfdfdf;
+}

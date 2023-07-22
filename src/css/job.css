@@ -1,0 +1,61 @@
+/* job openiges section  */
+.openings-outer
+{
+    background-color: #f8f9fb;
+    padding: 30px 30px;
+    max-height: 400px;
+    overflow: auto;
+    margin-bottom: 30px;
+}
+.job-cart
+{
+    border: 2px solid var(--primary-color);
+    border-radius: 3px;
+    padding: 15px 20px;
+    background-color: #fff;
+    margin-bottom: 30px;
+    cursor: pointer;
+    position: relative;
+}
+.job-cart:hover
+{
+    box-shadow: 0px 0px 10px #b8b6b6;
+}
+.job-cart:active
+{
+    transform: translateY(1px);
+}
+.job-cart h2
+{
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+.job-cart p
+{
+    margin-bottom: 5px;
+}
+/* publish job */
+.points .pts
+{
+    display: flex;
+    gap: 5px;
+    margin: 0 15px;
+}
+.points input
+{
+    width:450px ;
+}
+.points .pts-icons
+{
+    display: flex;
+    gap:10px;
+    align-items: center;
+}
+.points .pts-icons:first-child
+{
+    color:crimson;
+    cursor: pointer;
+}
+
+/* set data to redux toolkit store with image using useDispatch */

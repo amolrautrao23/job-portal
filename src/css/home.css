@@ -1,0 +1,59 @@
+.carousel
+{
+    position: relative;
+    margin-top: 50px;
+}
+.img{
+    height: 400px;
+    width: 100%;
+}
+.overlay,.carousel-text,.owl-dots,.owl-nav , .owl-next,.owl-prev
+{
+    position: absolute;
+}
+.overlay
+{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.51);
+    top: 0;
+}
+.carousel-text
+{
+    
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    color: white;
+}
+.owl-dots
+{
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.owl-nav
+{
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    width: 100%;
+  
+}
+.owl-prev
+{
+    left: 1%;
+    background-color: gray;
+    height: 40px;
+    width: 50px;
+}
+.owl-next
+{
+    background-color: gray;
+    height: 40px;
+    width: 50px;
+    right: 1%;
+}
+
+

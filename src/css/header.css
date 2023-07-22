@@ -1,0 +1,57 @@
+*,::before,::after
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    padding: 15px 0;
+    border-bottom: 1px solid #dfdfdf;
+    margin-bottom: 30px;
+}
+header .logo img
+{
+    height: 35px;
+    width: 100%;
+    object-fit: contain;
+}
+.menu ul 
+{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 15px;
+    list-style: none;
+}
+.menu ul li a 
+{
+    text-decoration: none;
+    color: rgb(47, 45, 45);
+}
+.menu .active
+{
+    color:#000;
+}
+.search,.search form
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.search input
+{
+    width: 400px;
+    height: 38px;
+}
+.search input:focus
+{
+    outline: none;
+    box-shadow: none;
+}
+.theme
+{
+    padding-top: 5px; 
+    cursor: pointer;
+}

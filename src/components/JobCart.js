@@ -1,10 +1,12 @@
 import { BiSolidEdit } from "react-icons/bi"
 import { RiDeleteBin5Fill } from "react-icons/ri"
+import { NavLink } from "react-router-dom"
 
 const JobCart = ({ elem, isEditable }) => {
 
     return (
         <>
+        <NavLink to={`/jobDetail/${elem.id}`} style={{"textDecoration":"none"}}>
             <div className="job-cart" onClick={() => console.log("clicked on ", elem.id)}>
                 <h2 className="job-title">{elem.title}</h2>
                 <p><strong>Salary :</strong> {elem.salary}</p>
@@ -18,7 +20,7 @@ const JobCart = ({ elem, isEditable }) => {
                     </div>
                 }
             </div>
-
+            </NavLink>
         </>
     )
 }

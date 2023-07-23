@@ -3,9 +3,7 @@ import React from 'react'
 const CarouselItem = ({elem}) => {
     return (
         <>
-        {console.log("banner data is ",elem)}
             <div className='item'>
-                {console.log(elem)}
                 <div className="overlay"></div>
                 <img className="img" src={elem.image } />
                 <div className="carousel-text">

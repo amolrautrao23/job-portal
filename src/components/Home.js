@@ -31,7 +31,7 @@ const Home = () => {
                   navText={["Prev", "next"]}>
 
                   {
-                    data.map((elem,i) => <CarouselItem elem={elem} key={i} />)
+                   data.length > 0 &&data.map((elem,i) => <CarouselItem elem={elem} key={i} />)
 
                   }
                   <div className='item'>

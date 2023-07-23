@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import JobCart from './JobCart'
-import { useSelector } from 'react-redux'
-const JobOpening = () => {  
+import { useDispatch, useSelector } from 'react-redux'
+
+const JobOpening = () => {
   // accessing data from store 
   const state = useSelector(state => state.job)
   const [data, setData] = useState([])
-  useEffect(() => setData(state), [])
-  
+
+  useEffect(() => setData(state.data), [state])
+
   return (
     <>
       <div className="heading p-3 ">
@@ -16,9 +18,12 @@ const JobOpening = () => {
         <div className="row">
           <div className="col-12">
             {
-              data?.map(elem=><JobCart key={elem.id} elem={elem} />)
+              state.isLoading ?
+                <h3>Loading...</h3>
+                : state.isError ?
+                  <h4 className='text-danger'>Something went wrong!</h4>
+                  : data.length > 0 && data.map(elem => <JobCart key={elem.id} elem={elem} />)
             }
-
           </div>
         </div>
       </div>

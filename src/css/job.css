@@ -9,8 +9,9 @@
 }
 .job-cart
 {
-    border: 2px solid var(--primary-color);
+    border: 2px solid #efeeee;
     border-radius: 3px;
+    color:#000 !important;
     padding: 15px 20px;
     background-color: #fff;
     margin-bottom: 30px;
@@ -42,6 +43,21 @@
     display: flex;
     gap: 5px;
     margin: 0 15px;
+    padding-bottom: 15px;
+}
+
+.pts .btn-remove-point,.pts .btn-add-point
+{
+    cursor: pointer;
+    color: #000 !important;
+}
+.pts .btn-remove-point:hover
+{
+    color: red;
+}
+.pts .btn-add-point:hover
+{
+    color: var(--primary-color);
 }
 .points input
 {

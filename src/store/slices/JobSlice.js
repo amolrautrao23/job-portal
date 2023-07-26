@@ -2,9 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // fetch data from api 
 export const fetchJobs = createAsyncThunk("fetchJobs", async () => {
-    const res = await fetch("http://localhost:3000/jobs");
+    const res = await fetch("https://hatsoffcareer.onrender.com/api/opening/fetchallopening");
     const result=await res.json();
-    return result;
+    // console.log("openings,",result.opening)
+    return result.opening;
 })
 const JobSlice = createSlice({
     name: "job",
@@ -30,7 +31,7 @@ const JobSlice = createSlice({
     },
     reducers: {
         addNewJob(state, action) {
-            state.push(action.payload);
+            state.data.push(action.payload);
             // console.log(action.payload);
         },
         editJob(state, action) {

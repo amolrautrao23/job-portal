@@ -1,19 +1,23 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BsPlusSquare } from "react-icons/bs"
 import { GrClose } from "react-icons/gr"
-import { useDispatch } from "react-redux"
-import { addNewJob } from "../store/slices/JobSlice"
+import { useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
 
-const ManageJobModal = () => {
+const EditJob = () => {
+
+    const { id } = useParams();
+    // console.log("edit",state)
     const [jobData, setJobData] = useState({
         title: "",
         salary: "",
         experience: "",
         summury: "",
-        desc:[],
-        resp:[],
-        must:[],
+        desc: [],
+        resp: [],
+        must: [],
     })
+   
     const [descPoint, setDescPoint] = useState(['']);
     const [respPoint, setRespPoint] = useState(['']);
     const [mustPoint, setMustPoint] = useState(['']);
@@ -88,37 +92,37 @@ const ManageJobModal = () => {
     }
     // adding data to store 
     const handleSubmit = () => {
-        
-        
+
+
         // clear input fields 
         setJobData({
-          ...jobData,
-            desc:([...descPoint]),
-            resp:(respPoint),
-            must:(mustPoint),
+            ...jobData,
+            desc: ([...descPoint]),
+            resp: (respPoint),
+            must: (mustPoint),
         })
         setJobData({
             title: "",
             salary: "",
             experience: "",
             summury: "",
-            desc:[],
-            resp:[],
-            must:[],
+            desc: [],
+            resp: [],
+            must: [],
         })
-        
+
         // sending data to api 
-        fetch("http://localhost:3000/jobs",{
-            method:"POST",
-            headers:{
-                'Content-Type':'application/json',
-                'Access-Control-Allow-Origin':'*'
-            },
-            body:JSON.stringify(jobData)
-        })
-        .then(resp=>{
-            console.log(resp)
-        }).catch(err=>console.log(err))
+        // fetch("http://localhost:3000/jobs",{
+        //     method:"POST",
+        //     headers:{
+        //         'Content-Type':'application/json',
+        //         'Access-Control-Allow-Origin':'*'
+        //     },
+        //     body:JSON.stringify(jobData)
+        // })
+        // .then(resp=>{
+        //     console.log(resp)
+        // }).catch(err=>console.log(err))
 
 
     }
@@ -127,8 +131,8 @@ const ManageJobModal = () => {
             <div className="modal-dialog modal-lg">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Publish New Opening</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 className="modal-title" id="exampleModalLabel">Edit Opening</h5>
+                        {/* <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
                     </div>
                     <div className="modal-body">
                         <form>
@@ -138,7 +142,7 @@ const ManageJobModal = () => {
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="salary" className="form-label">'Salary'</label>
-                                <input type="number" name='salary' className="form-control" value={jobData.salary} onChange={handleChange} id="salary" aria-describedby="emailHelp" required/>
+                                <input type="number" name='salary' className="form-control" value={jobData.salary} onChange={handleChange} id="salary" aria-describedby="emailHelp" required />
                                 <small className='text-danger'>*Enter Only Number</small>
                             </div>
                             <div className="mb-3">
@@ -219,4 +223,4 @@ const ManageJobModal = () => {
     )
 }
 
-export default ManageJobModal
+export default EditJob

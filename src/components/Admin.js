@@ -1,54 +1,48 @@
-import React, { useState } from 'react'
-import Login from './Login'
-import { NavLink } from 'react-router-dom'
-import JobOpening from './JobOpening'
-import Banner from './Banner'
-import ManageJob from './ManageJob'
-import ViewApplication from './ViewApplication'
-
+import React, { useEffect, } from 'react'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 const Admin = () => {
-    const [tab, setTab] = useState(1);
+    const navigate = useNavigate();
 
-    return (
-        <>
-            <div className="container">
-                <div className="">
-                    <div className="row admin-section">
-                        <div className="col-md-2 p-0">
-                            <div className="text-center section" style={{ padding: "10px 0" }}>
-                                Section
-                            </div>
-                            <div className="section-menu">
-                                <div className={tab === 1 ? "menu-item active" : "menu-item"} onClick={() => setTab(1)}>
-                                    {/* <NavLink to="/banner"> Banner</NavLink> */}
-                                    Banner
-                                </div>
-                                <div className={tab === 2 ? "menu-item active" : "menu-item"} onClick={() =>setTab(2)}>
-                                    {/* <NavLink to="/openings"> Manage <br /> Openings</NavLink> */}
-                                    manage openings
-                                </div>
-                                <div className={tab === 3 ? "menu-item active" : "menu-item"} onClick={() => setTab(3)}>
-                                    {/* <NavLink to="/application"> View <br /> Applications</NavLink> 
-                */}
-                                    view
-                                </div>
-                            </div>
+    useEffect(() => {
+        let token = localStorage.getItem("token");
+        if (!token) {
+            navigate("/login")
+        }
+    }, []);
 
-                        </div>
-                        <div className="col-md-10 p-0">
-                            <div className="content">
-                                {
-                                        tab === 1 ? <Banner /> : tab === 2 ? <ManageJob /> : tab === 3 ? <ViewApplication /> : null
-                                    }
-                            </div>
-                        </div>
+    return <>
+
+
+
+        <div className="container scb">
+
+            <div className="row admin-section">
+                <div className="col-md-2 p-0">
+                    <div className="text-center section" style={{ padding: "10px 0" }}>
+                        Section
                     </div>
+                    <div className="section-menu">
+                        <NavLink to="/admin/banner" className={"menu-item"}> Banner
+                        </NavLink>
+                        <NavLink to="/admin/manage-job" className={"menu-item"}>
+                            Manage openings
+                        </NavLink>
+                        <NavLink to="/admin/view-application" className={"menu-item"}>
+                            view
+                        </NavLink>
+                    </div>
+
+                </div>
+                <div className="col-md-10 p-0">
+                    {/* content is here  */}
+                        <Outlet />
                 </div>
             </div>
 
+        </div>
 
-        </>
-    )
+
+    </>
 }
 
 export default Admin

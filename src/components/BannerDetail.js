@@ -1,15 +1,12 @@
-import { BiSolidEdit } from "react-icons/bi"
-import { RiDeleteBin5Fill } from "react-icons/ri"
-import "../css/banner.css"
-import BannerDetail from "./BannerDetail"
-import { NavLink } from "react-router-dom"
-import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-const BannerCart = ({value}) => {
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-    const state=useSelector(state=>state.job.data)
-    //  Edit Banner code 
-    const [bannerData, setBannerData] = useState({
+const BannerDetail = () => {
+    
+    // const state=useSelector(state=>state.banner)
+    const {bid}=useParams();
+        const [bannerData, setBannerData] = useState({
         title: "",
         discription: "",
         image: ""
@@ -64,39 +61,13 @@ const BannerCart = ({value}) => {
         // })
 
     }
-
     return (
-        <>
-
-            <div className=" card banner">
-                <div className="row">
-                    <div className="col-md-4">
-                        <div className="banner-text">
-                            <h2 className="banner-heading">{value.title}</h2>
-                            <p>{value.description}</p>
-                            <div className="modify-icons">
-                             <NavLink to={`/banner-detail/${value._id}`} className="icon-edit" data-bs-toggle="modal" data-bs-target="#editBanner" ><BiSolidEdit /></NavLink>
-                                <div className="icon-delete"><RiDeleteBin5Fill /></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-8">
-                        <div className="banner-img">
-                            <img src={value.image} alt="banner-image" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        {/* modal */}
-
-        <div className="modal fade" id="editBanner" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <>
         <div className="modal-dialog modal-lg">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">Edit Banner</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        {/* <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
                     </div>
                     <div className="modal-body">
                         <form>
@@ -129,13 +100,8 @@ const BannerCart = ({value}) => {
                     </div>
                 </div>
             </div>
-            </div>
-
-            {/* modal */}
-
-        </>
+      </>
     )
-    
 }
 
-export default BannerCart
+export default BannerDetail

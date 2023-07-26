@@ -24,7 +24,21 @@ const BannerModal = () => {
     // adding data to store 
     const handleSubmit = () => {
         // dispatch(addBanner(bannerData))
-console.log(bannerData);
+
+         // sending data to api 
+         fetch("https://hatsoffcareer.onrender.com/api/banner/createbanner",{
+            method:"POST",
+            headers:{
+                'Content-Type':'application/json',
+                'Access-Control-Allow-Origin':'*'
+            },
+            body:JSON.stringify(bannerData)
+        })
+        .then(resp=>{
+            console.log(resp)
+        }).catch(err=>console.log(err))
+
+
         // clear input fields 
         setBannerData({
             title: "",
@@ -54,7 +68,8 @@ console.log(bannerData);
                             <div className="mb-3">
                                 <label htmlFor="file" className="form-label">Banner Image</label>
                                 <div className="b-img">
-                                    <input type="file" name="image" className="form-control" onChange={e => setBannerData({ ...bannerData, image: e.target.files[0] })} id="file" style={{ display: "none" }} />
+                                    <input type="file" name="image" className="form-control" onChange={e =>
+                                         setBannerData({ ...bannerData, image: e.target.files[0] })} id="file" style={{ display: "none" }} />
                                     <label htmlFor="file" className="btn btn-primary">Upload</label>
                                     {bannerData.image && <div className="img-preview">
                                         <img src={URL.createObjectURL(bannerData.image)} alt="img-preview" />

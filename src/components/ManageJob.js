@@ -8,14 +8,13 @@ import ManageJobModal from "./ManageJobModal"
 const ManageJob = () => {
     const state = useSelector(state => state.job)
     const [data, setData] = useState([]);
-    useEffect(() => setData(state), [])
- 
-
+    useEffect(() => setData(state.data), [])
+    
     return (
         <>
             <div className="section-head">
                 <h2>Manage Openings</h2>
-                <div className="section-icon" data-bs-toggle="modal" data-bs-target="#exampleModal"><BsPlusSquare /></div>
+                <div className="section-icon" data-bs-toggle="modal" data-bs-target="#publishJob"><BsPlusSquare /></div>
 
             </div>
             <div className="section-body" >
@@ -27,7 +26,7 @@ const ManageJob = () => {
 
             {/* modal */}
 
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="publishJob" tabIndex="-1" aria-labelledby="publishJobLabel" aria-hidden="true">
                 <ManageJobModal/>
             </div>
 

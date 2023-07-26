@@ -1,6 +1,7 @@
 import React from 'react'
 
 const CarouselItem = ({elem}) => {
+    
     return (
         <>
             <div className='item'>
@@ -8,7 +9,7 @@ const CarouselItem = ({elem}) => {
                 <img className="img" src={elem.image } />
                 <div className="carousel-text">
                     <h3>{elem.title}</h3>
-                    <p>{elem.description}</p>
+                    <p>{elem.discription}</p>
                 </div>
             </div>
         </>

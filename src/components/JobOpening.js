@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import JobCart from './JobCart'
-import { useDispatch, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 
 const JobOpening = () => {
   // accessing data from store 
   const state = useSelector(state => state.job)
   const [data, setData] = useState([])
-
-  useEffect(() => setData(state.data), [state])
+  useEffect(() => setData(state.data), [state],[])
 
   return (
     <>

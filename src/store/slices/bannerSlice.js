@@ -1,32 +1,40 @@
-import { createSlice } from "@reduxjs/toolkit";
-import img1 from "../../img/img2.jpg"
-import img2 from "../../img/img1.jpg"
-import img3 from "../../img/img2.jpg"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+export const fetchBanner = createAsyncThunk("fetchBanner", async () => {
+    try {
+        const res = await fetch("https://hatsoffcareer.onrender.com/api/banner/fetchallbanner");
+        const result=await res.json();
+        return result.banner;
+      } catch (error) {
+        console.log("err",error);
+      }
+   
+})
 
 const BannerSlice=createSlice({
     name:"banner",
-    initialState:[
-        {
-            // id:1,
-            title:"This is title",
-            description:"This is description",
-            image:img1,
-        },
-        {
-            // id:2,
-            title:"This is title 2",
-            description:"This is description",
-            image:img2,
-        },
-        {
-            // id:3,
-            title:"This is title 3",
-            description:"This is description",
-            image:img3,
-        },
-       
-    ],
+
+        initialState: {
+            isLoading: false,
+            data: [],
+            isError: false,
+        },     
+
+    extraReducers: (builder) => {
+        builder.addCase(fetchBanner.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        builder.addCase(fetchBanner.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isError = false;
+            state.data=action.payload;
+        })
+        builder.addCase(fetchBanner.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            console.log("Error", action.payload);
+        })
+    },
      reducers:{ 
             addBanner(state,action){
                 state.push(action.payload);

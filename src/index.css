@@ -29,3 +29,7 @@
 .modify-icons .icon:last-child:hover{
     color:crimson;
 }
+body::-webkit-scrollbar
+{
+  display: none !important;
+}

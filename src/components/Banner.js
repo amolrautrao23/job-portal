@@ -18,7 +18,11 @@ const Banner = () => {
             </div>
             <div className="section-body" >
                 {
-                    data.map(value=><BannerCart key={value.id} value={value} />)
+                    state.isLoading ?
+                    <h3>Loading...</h3>
+                    : state.isError ?
+                      <h4 className='text-danger'>Something went wrong!</h4>
+                      :data.map(value=><BannerCart key={value._id} value={value} />)
                 }
             </div>
 

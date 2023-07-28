@@ -1,23 +1,33 @@
 import React from 'react'
+import dt from 'date-and-time';
 
-const AppliedCard = () => {
+const AppliedCard = ({ value }) => {
+
+    const { title, name, email, phone, cLeter, date,cv } = value;
+    const FormatDate = () => {
+        var now = new Date(date);
+        now=dt.format(now, 'DD/MM/YYYY, HH:mm:ss A'); 
+        // console.log(now)
+        return now
+
+    }
     return (
         <>
             <div className='job-cart application'>
                 <div className="cart-inner">
                     <div className='cart-text'>
-                        <h2 className="job-title">Title</h2>
-                        <p><strong>Name :</strong> salary</p>
-                        <p><strong>Email :</strong> expe</p>
-                        <p><strong>Mobile :</strong> desc</p>
-                        <p><strong>CV/Resume : </strong><button>cv.pdf</button></p>
+                        <h2 className="job-title"> {title}</h2>
+                        <p><strong>Name :</strong> {name}</p>
+                        <p><strong>Email :</strong> {email}</p>
+                        <p><strong>Mobile :</strong> {phone}</p>
+                        <p><strong>CV/Resume : </strong><a href={cv}>cv.pdf</a></p>
                     </div>
                     <div className="cover-letter">
                         <p>cover Letter :</p>
-                        <p>dfsdfsjfsjhh</p>
+                        <p>{cLeter}</p>
                     </div>
                     <div className="time">
-                        <p>7/11/2022, </p><p>1:10:56 PM (1yr)</p>
+                        <p><FormatDate /> (1yr)</p>
                     </div>
                 </div>
             </div>

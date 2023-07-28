@@ -14,7 +14,7 @@ const Admin = () => {
 
 
 
-        <div className="container scb">
+        <div className="container p-0">
 
             <div className="row admin-section">
                 <div className="col-md-2 p-0">

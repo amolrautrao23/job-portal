@@ -1,42 +1,54 @@
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 import React, { useEffect, useState } from 'react'
-import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs"
 import { useSelector } from 'react-redux';
 import CarouselItem from './CarouselItem';
+
+
+
 
 const Carousel = () => {
   // accessing bannar data from store 
   const state = useSelector(state => state.banner)
   const [data, setData] = useState([])
   useEffect(() => setData(state.data), [state])
-
+  let slidesToShow=1;
+  const PrevBtn=props=>
+  {
+    const {className,onClick,currentSlide}=props;
+    return currentSlide !==0 && <div className={className} onClick={onClick} ><BsArrowLeft  style={{"color":"#fff",fontSize:"20px"}}/></div>
+  }
+  const NextBtn=props=>
+  {
+    const {className,onClick,currentSlide,slideCount}=props;
+    return currentSlide!== slideCount - slidesToShow && <div className={className} onClick={onClick} ><BsArrowRight style={{"color":"#fff",fontSize:"20px"}}/></div> 
+     
+  }
   return (
     <>
-      <OwlCarousel className='owl-theme'
-        loop margin={10}
-        nav
-        autoplay
-        items={1}
-        // navText={[<BsArrowRight />, <BsArrowRight />]}>
-        // navText={[<BiRightArrowAlt  />, <BiRightArrowAlt />]}
-        //   navText={ ['<span aria-label="Previous">⬅️</span>','<span aria-label="Next">➡️</span>']}
-        navText={['<span>⬅️</span>', '<span >➡️</span>']}
+     
+        <Slider className='carousel'
+        // autoplay
+        dots
+        // infinite={false}
+        dotsClass='slick-dots dots'
+        prevArrow={<PrevBtn/>}
+        nextArrow={<NextBtn/>}
+        initialSlide={2}
+        slidesToShow={slidesToShow}
+        >
+          {
+             state.isLoading ?
+             <h3>Loading...</h3>
+             : state.isError ?
+               <h4 className='text-danger'>Something went wrong!</h4>
+               : data && data.map(elem => <CarouselItem elem={elem} key={elem._id} />)
+ 
+          }
+        </Slider>
 
-
-      >
-        {/* // navText={["Prev", "next"]}> */}
-
-        {
-          state.isLoading ?
-            <h3>Loading...</h3>
-            : state.isError ?
-              <h4 className='text-danger'>Something went wrong!</h4>
-              : data && data.map(elem => <CarouselItem elem={elem} key={elem.id} />)
-
-        }
-      </OwlCarousel>
     </>
   )
 }

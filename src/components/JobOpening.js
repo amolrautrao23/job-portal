@@ -10,7 +10,7 @@ const JobOpening = () => {
 
   return (
     <>
-      <div className="heading p-3 ">
+      <div className="heading">
         <h2 className='text-decoration-underline'>Job Openings</h2>
       </div>
       <div className="openings-outer">
@@ -21,7 +21,7 @@ const JobOpening = () => {
                 <h3>Loading...</h3>
                 : state.isError ?
                   <h4 className='text-danger'>Something went wrong!</h4>
-                  : data.length > 0 && data.map(elem => <JobCart key={elem.id} elem={elem} />)
+                  : data.length > 0 && data.map(elem => <JobCart key={elem._id} elem={elem} />)
             }
           </div>
         </div>

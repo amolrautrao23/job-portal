@@ -5,28 +5,29 @@ export const fetchAppliedJobs = createAsyncThunk("fetchAppliedJobs", async () =>
     try {
         const res = await fetch("https://hatsoffcareer.onrender.com/api/application/appliedapplications",
             {
-                method: 'POST',
-                headers: { 
-                    'Accept':'*/*',
-                    'Content-Type': 'application/json', 
-                    "Authorization":'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6eyJpZCI6IjYzOTk4NGE0M2U2MzhkYjgyZmJhNDhkYyJ9LCJpYXQiOjE2OTAyMDE4NDR9.eTL0w6_QybXptYVay3BBPrHTm3a3P44B3Jpl1sVu4io' 
-            },
-               
+                method: 'GET',
+                headers: {
+                    'Accept': '*/*',
+                    'Content-Type': 'application/json',
+                    "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6eyJpZCI6IjYzOTk4NGE0M2U2MzhkYjgyZmJhNDhkYyJ9LCJpYXQiOjE2OTAyMDE4NDR9.eTL0w6_QybXptYVay3BBPrHTm3a3P44B3Jpl1sVu4io'
+                },
+
             });
 
 
-const result = await res.json();
-// console.log("openings,",result.opening)
-return result.application;
+        const result = await res.json();
+        return result.application;
+
     } catch (error) {
-    console.log(error);
-}
+        console.log(error);
+    }
 })
-const JobSlice = createSlice({
-    name: "job",
+const appliedJobSlice = createSlice({
+    name: "application",
     initialState: {
         isLoading: false,
-        data: [],
+        data: [],        
+        sortedData:[],
         isError: false,
     },
     extraReducers: (builder) => {
@@ -37,7 +38,6 @@ const JobSlice = createSlice({
             state.isLoading = false;
             state.isError = false;
             state.data = action.payload;
-            console.log("applied jobs are:", action.payload);
         })
         builder.addCase(fetchAppliedJobs.rejected, (state, action) => {
             state.isLoading = false;
@@ -47,13 +47,22 @@ const JobSlice = createSlice({
     },
     reducers: {
 
-        removeApplication(state, action) {
-            state.splice(action.payload, 1)
-            // console.log(action.payload);
-        },
+        sortApplication(state,action){
+            let newSortedData;
+            let tempSortData=state.data;
+            if(action.payload==="a-z")
+            {
+                state.sortedData=tempSortData.sort((a,b)=>a.title.localeCompare(b.title))
+            }
+            if(action.payload==="z-a")
+            {
+                state.sortedData=tempSortData.sort((a,b)=>b.title.localeCompare(a.title))
+            }
+           
+        }
 
     }
 })
 // console.log(JobSlice);
-export default JobSlice.reducer;
-export const { removeApplication } = JobSlice.actions;
+export default appliedJobSlice.reducer;
+export const { sortApplication } = appliedJobSlice.actions;

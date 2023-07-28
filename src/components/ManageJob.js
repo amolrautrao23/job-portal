@@ -9,7 +9,7 @@ const ManageJob = () => {
     const state = useSelector(state => state.job)
     const [data, setData] = useState([]);
     useEffect(() => setData(state.data), [])
-    
+
     return (
         <>
             <div className="section-head">
@@ -19,7 +19,11 @@ const ManageJob = () => {
             </div>
             <div className="section-body" >
                 {
-                    data?.map(elem => <JobCart key={elem.id} elem={elem} isEditable={true} />)
+                    state.isLoading ?
+                        <h3>Loading...</h3>
+                        : state.isError ?
+                            <h4 className='text-danger'>Something went wrong!</h4>
+                            : data?.map(elem => <JobCart key={elem._id} elem={elem} isEditable={true} />)
                 }
             </div>
 
@@ -27,7 +31,7 @@ const ManageJob = () => {
             {/* modal */}
 
             <div className="modal fade" id="publishJob" tabIndex="-1" aria-labelledby="publishJobLabel" aria-hidden="true">
-                <ManageJobModal/>
+                <ManageJobModal />
             </div>
 
             {/* modal */}
